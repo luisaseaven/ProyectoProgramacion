@@ -12,7 +12,7 @@ public abstract class Vehiculo implements Calculable {
     public String getPlaca() {
         return placa;
     }
-
+   //se pide la respectiva placa
     public String getTipo() {
         return tipo;
     }

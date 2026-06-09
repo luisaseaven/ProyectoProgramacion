@@ -29,7 +29,7 @@ public class MenuParqueadero {
                         System.out.println("Error: El carro ya está dentro del parqueadero.");
                     }
                     break;
-
+      //Se ingresa los datos correspondietes
                 case 2:
                     System.out.print("Ingrese la placa del carro a salir: ");
                     String placaSalida = teclado.nextLine();
