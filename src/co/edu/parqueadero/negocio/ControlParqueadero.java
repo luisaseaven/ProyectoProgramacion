@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class ControlParqueadero {
     private ArrayList<Carro> listaVehiculos;
-    private static final double PORCENTAJE_IVA = 0.19; // IVA del 19%
+    private static final double PORCENTAJE_IVA = 0.19; 
 
     public ControlParqueadero() {
         this.listaVehiculos = new ArrayList<>();
     }
 
-    public boolean registrarIngreso(String placa) {
+    public boolean registrarIngreso(String placa, String color, String marca, String modelo, String propietario, String cedula) {
         for (Carro c : listaVehiculos) {
             if (c.getPlaca().equalsIgnoreCase(placa)) {
-                return false; // El vehículo ya está adentro
+                return false; 
             }
         }
-        listaVehiculos.add(new Carro(placa));
+        listaVehiculos.add(new Carro(placa, color, marca, modelo, propietario, cedula));
         return true;
     }
 
-    public String procesarSalida(String placa, int horas, boolean yaHabiaVisitado) {
+    public String procesarSalida(String placa, int horas, boolean yaHabiaVisitado, String horaRecogida) {
         Carro carroEncontrado = null;
         for (Carro c : listaVehiculos) {
             if (c.getPlaca().equalsIgnoreCase(placa)) {
@@ -30,12 +30,11 @@ public class ControlParqueadero {
         }
 
         if (carroEncontrado == null) {
-            return "Vehículo no registrado en el parqueadero.";
+            return "Error: Vehículo no registrado en el parqueadero.";
         }
 
         double subtotal = carroEncontrado.calcularCostoTotal(horas);
 
-        // Descuento del 10% por visita previa
         if (yaHabiaVisitado) {
             subtotal = subtotal * 0.90; 
         }
@@ -45,14 +44,24 @@ public class ControlParqueadero {
 
         listaVehiculos.remove(carroEncontrado);
 
-        return "=== RECIBO DE PAGO ===\n" +
-               "Placa: " + placa + "\n" +
-               "Horas en parqueadero: " + horas + "\n" +
-               "Descuento aplicado (10%): " + (yaHabiaVisitado ? "SÍ" : "NO") + "\n" +
+        String reporte = "=== RECIBO DE PAGO ===\n" +
+               "Placa/Matrícula: " + carroEncontrado.getPlaca() + "\n" +
+               "Marca/Modelo: " + carroEncontrado.getMarca() + " (" + carroEncontrado.getModelo() + ")\n" +
+               "Color: " + carroEncontrado.getColor() + "\n" +
+               "Propietario: " + carroEncontrado.getNombrePropietario() + " (CC: " + carroEncontrado.getIdentificacionPropietario() + ")\n" +
+               "Tiempo de uso: " + horas + " horas.\n";
+               
+        if (horas > 12 && horaRecogida != null) {
+            reporte += "Estado: Estadía Larga (>12h) - Recogida pactada a las: " + horaRecogida + "\n";
+        }
+
+        reporte += "Descuento aplicado (10%): " + (yaHabiaVisitado ? "SÍ" : "NO") + "\n" +
                "Subtotal: $" + subtotal + "\n" +
                "IVA (19%): $" + valorIva + "\n" +
                "TOTAL A PAGAR: $" + totalPagar + "\n" +
                "=====================";
+               
+        return reporte;
     }
 
     public ArrayList<Carro> getListaVehiculos() {
