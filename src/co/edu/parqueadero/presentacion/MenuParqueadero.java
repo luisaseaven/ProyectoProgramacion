@@ -88,9 +88,9 @@ public class MenuParqueadero {
                     boolean visita = false;
                     while (true) {
                         System.out.print("¿El cliente ya había visitado antes? (si/no): ");
-                        String rtaVisita = teclado.nextLine().trim().toLowerCase(); // Convierte todo a minúsculas
+                        String rtaVisita = teclado.nextLine().trim().toLowerCase(); 
                         
-                        // Quitar la tilde visualmente si la ponen para que no falle (siguiente nivel de blindaje)
+                        // Quitar la tilde visualmente si la ponen para que no falle 
                         if (rtaVisita.equals("sí")) {
                             rtaVisita = "si";
                         }
