@@ -29,13 +29,13 @@ public class MenuParqueadero {
                         System.out.println("Error: El carro ya está dentro del parqueadero.");
                     }
                     break;
-      //Se ingresa los datos correspondietes
+            //Se ingresa los datos correspondietes al usuario
                 case 2:
                     System.out.print("Ingrese la placa del carro a salir: ");
                     String placaSalida = teclado.nextLine();
                     System.out.print("¿Cuántas horas estuvo?: ");
                     int horas = teclado.nextInt();
-                    System.out.print("¿El cliente ya había visitado antes? (true/false): ");
+                    System.out.print("¿El cliente ya había visitado antes? (si/no): ");
                     boolean visita = teclado.nextBoolean();
 
                     String recibo = parqueadero.procesarSalida(placaSalida, horas, visita);
