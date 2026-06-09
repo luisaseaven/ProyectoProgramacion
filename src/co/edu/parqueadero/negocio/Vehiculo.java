@@ -1,8 +1,8 @@
 package co.edu.parqueadero.negocio;
 
 public abstract class Vehiculo implements Calculable {
-    protected String placa; //pedimos el dato (placa)
-    protected String tipo;  //pedimos el dato (tipo)
+    protected String placa;
+    protected String tipo;
 
     public Vehiculo(String placa, String tipo) {
         this.placa = placa;
@@ -12,7 +12,7 @@ public abstract class Vehiculo implements Calculable {
     public String getPlaca() {
         return placa;
     }
-   //se pide la respectiva placa
+
     public String getTipo() {
         return tipo;
     }
