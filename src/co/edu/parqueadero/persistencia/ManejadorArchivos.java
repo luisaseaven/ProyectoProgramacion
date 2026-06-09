@@ -1,3 +1,7 @@
+/**
+ * NOMBRES DE LAS AUTORAS: Luisa Segura, Alejandra Ortega, Danna Contreras
+ * NOMBRE PROYECTO: Parqueadero
+ */
 package co.edu.parqueadero.persistencia;
 
 public class ManejadorArchivos {
